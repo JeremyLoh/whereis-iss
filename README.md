@@ -2,6 +2,27 @@
 
 Location of the International Space Station
 
+Made using Node, React and Leaflet, OpenStreetMap
+
+- https://nodejs.org/en/
+- https://reactjs.org/
+- https://leafletjs.com/
+- https://www.openstreetmap.org/#map=12/1.3649/103.8229
+
+OpenStreetMap tiles use a Mercator Projection
+
+![Mercator Projection Wikipedia](https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Mercator_projection_Square.JPG/600px-Mercator_projection_Square.JPG)
+
+- "The Mercator projection is a cylindrical map projection presented by Flemish geographer and cartographer Gerardus Mercator in 1569. It became the standard map projection for navigation because it is unique in representing north as up and south as down everywhere while preserving local directions and shapes." (Wikipedia)
+- "As on all map projections, shapes or sizes are distortions of the true layout of the Earth's surface. The Mercator projection exaggerates areas far from the equator." (Wikipedia)
+- https://en.wikipedia.org/wiki/Mercator_projection
+
+# Attribution
+
+Base map and data from OpenStreetMap and OpenStreetMap Foundation
+
+https://www.openstreetmap.org/copyright
+
 # References
 
 Where the ISS At API
@@ -11,6 +32,14 @@ Where the ISS At API
 Upmostly - setInterval in React Components Using Hooks
 
 - https://upmostly.com/tutorials/setinterval-in-react-components-using-hooks
+
+Switch2OSM - Using Tiles
+
+- https://switch2osm.org/using-tiles/
+
+React: why child component doesn't update when prop changes
+
+- https://stackoverflow.com/questions/38892672/react-why-child-component-doesnt-update-when-prop-changes
 
 # Getting Started with Create React App
 
