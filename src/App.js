@@ -12,11 +12,11 @@ function App() {
       async function fetchData() {
         const info = await Satellite.getIssInfo();
         setSatellite(info);
+        infinite();
       };
 
       setTimeout(() => {
         fetchData();
-        infinite();
       }, 2000);
     };
 
