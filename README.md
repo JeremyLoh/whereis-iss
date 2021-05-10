@@ -8,6 +8,10 @@ Where the ISS At API
 
 - https://wheretheiss.at/w/developer
 
+Upmostly - setInterval in React Components Using Hooks
+
+- https://upmostly.com/tutorials/setinterval-in-react-components-using-hooks
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

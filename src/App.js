@@ -13,7 +13,10 @@ function App() {
       setSatellite(info);
     };
 
-    fetchData();
+    const interval = setInterval(() => {
+      fetchData();
+    }, 2000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
