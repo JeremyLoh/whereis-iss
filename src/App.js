@@ -8,15 +8,19 @@ function App() {
   const [satellite, setSatellite] = useState({});
 
   useEffect(() => {
-    async function fetchData() {
-      const info = await Satellite.getIssInfo();
-      setSatellite(info);
+    function infinite() {
+      async function fetchData() {
+        const info = await Satellite.getIssInfo();
+        setSatellite(info);
+        infinite();
+      };
+
+      setTimeout(() => {
+        fetchData();
+      }, 2000);
     };
 
-    const interval = setInterval(() => {
-      fetchData();
-    }, 2000);
-    return () => clearInterval(interval);
+    infinite();
   }, []);
 
   return (
