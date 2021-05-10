@@ -23,6 +23,10 @@ Base map and data from OpenStreetMap and OpenStreetMap Foundation
 
 https://www.openstreetmap.org/copyright
 
+Image used for the ISS
+
+- https://upload.wikimedia.org/wikipedia/commons/d/d0/International_Space_Station.svg
+
 # References
 
 Where the ISS At API

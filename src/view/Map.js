@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { OPENSTREETMAP_ATTRIBUTION, TILE_URL } from "../common/constants";
 import "./Map.css";
 
-function Map({ latitude, longitude }) {
+function Map({ latitude, longitude, iconParams }) {
   const [currentMarker, setMarker] = useState(undefined);
 
   useEffect(() => {
@@ -13,10 +13,14 @@ function Map({ latitude, longitude }) {
       maxZoom: 12,
     });
     tiles.addTo(map);
-    const marker = L.marker([0, 0]).addTo(map);
+
+    const myIcon = L.icon(iconParams);
+    const marker = L.marker([0, 0], {
+      icon: myIcon,
+    }).addTo(map);
     setMarker(marker);
     return () => map.remove();
-  }, []);
+  }, [iconParams]);
 
   useEffect(() => {
     if (currentMarker && latitude && longitude) {

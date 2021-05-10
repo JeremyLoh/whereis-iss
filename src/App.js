@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import { ISS_ICON_PARAMS } from "./common/constants";
 import Position from "./view/Position";
 import Satellite from "./model/satellite";
 import { useEffect, useState } from 'react';
@@ -25,7 +25,7 @@ function App() {
         whereis the ISS?
       </header>
       <div>
-        <Position satellite={satellite} />
+        <Position satellite={satellite} iconParams={ISS_ICON_PARAMS} />
       </div>
     </div>
   );
