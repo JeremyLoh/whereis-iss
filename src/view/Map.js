@@ -7,6 +7,7 @@ function Map({ latitude, longitude, iconParams }) {
   const [currentMarker, setMarker] = useState(undefined);
   const [currentMap, setMap] = useState(undefined);
   const [firstMapLoad, setFirstMapLoad] = useState(true);
+  const [previousLocation, setPreviousLocation] = useState([]);
 
   useEffect(() => {
     const map = L.map('mapid');
@@ -32,6 +33,18 @@ function Map({ latitude, longitude, iconParams }) {
         currentMap.setView([latitude, longitude], 5);
         setFirstMapLoad(false);
       }
+      // Add previous locations of ISS
+      const newLocations = [...previousLocation];
+      newLocations.push(new L.LatLng(latitude, longitude));
+      setPreviousLocation(newLocations);
+
+      const polyline = new L.Polyline(newLocations, {
+        color: 'red',
+        weight: 3,
+        opacity: 0.5,
+        smoothFactor: 1
+      });
+      polyline.addTo(currentMap);
     }
   }, [latitude, longitude, currentMarker, currentMap, firstMapLoad]);
 
