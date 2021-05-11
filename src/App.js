@@ -17,7 +17,7 @@ function App() {
 
       setTimeout(() => {
         fetchData();
-      }, 2000);
+      }, 3000);
     };
 
     infinite();
