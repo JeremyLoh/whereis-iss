@@ -1,0 +1,33 @@
+.stat-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #3f4756;
+  color: white;
+  min-height: 100%;
+  height: 30vh;
+  width: 100%;
+  transition: all 1s;
+}
+
+.stat-div:hover {
+  background-color: #a3acbd;
+  color: black;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.stat-img {
+  width: 200px;
+  animation-name: spin;
+  animation-duration: 55000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}

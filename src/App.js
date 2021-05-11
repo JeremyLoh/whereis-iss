@@ -3,6 +3,7 @@ import { ISS_ICON_PARAMS } from "./common/constants";
 import Position from "./view/Position";
 import Satellite from "./model/satellite";
 import { useEffect, useState } from 'react';
+import SatelliteStat from './view/SatelliteStat';
 
 function App() {
   const [satellite, setSatellite] = useState({});
@@ -17,7 +18,7 @@ function App() {
 
       setTimeout(() => {
         fetchData();
-      }, 2000);
+      }, 3000);
     };
 
     infinite();
@@ -30,6 +31,7 @@ function App() {
       </header>
       <div>
         <Position satellite={satellite} iconParams={ISS_ICON_PARAMS} />
+        <SatelliteStat satellite={satellite} />
       </div>
     </div>
   );
