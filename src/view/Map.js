@@ -7,7 +7,13 @@ function Map({ latitude, longitude, iconParams }) {
   const [currentMarker, setMarker] = useState(undefined);
   const [currentMap, setMap] = useState(undefined);
   const [firstMapLoad, setFirstMapLoad] = useState(true);
-  const [previousLocation, setPreviousLocation] = useState([]);
+  const [previousLocation, setPreviousLocation] = useState(undefined);
+  const [polyline] = useState(new L.Polyline([], {
+    color: 'red',
+    weight: 3,
+    opacity: 0.5,
+    smoothFactor: 1
+  }));
 
   useEffect(() => {
     const map = L.map('mapid', {
@@ -18,6 +24,7 @@ function Map({ latitude, longitude, iconParams }) {
       maxZoom: 12,
     });
     tiles.addTo(map);
+    polyline.addTo(map);
 
     const myIcon = L.icon(iconParams);
     const marker = L.marker([0, 0], {
@@ -26,19 +33,13 @@ function Map({ latitude, longitude, iconParams }) {
     setMarker(marker);
     setMap(map);
     return () => map.remove();
-  }, [iconParams]);
+  }, [iconParams, polyline]);
 
   useEffect(() => {
-    if (currentMap) {
-      const polyline = new L.Polyline(previousLocation, {
-        color: 'red',
-        weight: 3,
-        opacity: 0.5,
-        smoothFactor: 1
-      });
-      polyline.addTo(currentMap);
+    if (currentMap && previousLocation) {
+      polyline.addLatLng(previousLocation);
     }
-  }, [previousLocation, currentMap]);
+  }, [previousLocation, currentMap, polyline]);
 
   useEffect(() => {
     if (currentMarker && latitude && longitude) {
@@ -48,7 +49,7 @@ function Map({ latitude, longitude, iconParams }) {
         setFirstMapLoad(false);
       }
       // Add previous locations of ISS
-      setPreviousLocation(previousLocation => [...previousLocation, new L.LatLng(latitude, longitude)]);
+      setPreviousLocation(new L.LatLng(latitude, longitude));
     }
   }, [latitude, longitude, currentMarker, currentMap, firstMapLoad]);
 
