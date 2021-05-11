@@ -10,7 +10,9 @@ function Map({ latitude, longitude, iconParams }) {
   const [previousLocation, setPreviousLocation] = useState([]);
 
   useEffect(() => {
-    const map = L.map('mapid');
+    const map = L.map('mapid', {
+      worldCopyJump: true,
+    });
     const tiles = L.tileLayer(TILE_URL, {
       attribution: OPENSTREETMAP_ATTRIBUTION,
       maxZoom: 12,
@@ -27,6 +29,18 @@ function Map({ latitude, longitude, iconParams }) {
   }, [iconParams]);
 
   useEffect(() => {
+    if (currentMap) {
+      const polyline = new L.Polyline(previousLocation, {
+        color: 'red',
+        weight: 3,
+        opacity: 0.5,
+        smoothFactor: 1
+      });
+      polyline.addTo(currentMap);
+    }
+  }, [previousLocation, currentMap]);
+
+  useEffect(() => {
     if (currentMarker && latitude && longitude) {
       currentMarker.setLatLng([latitude, longitude]);
       if (firstMapLoad) {
@@ -34,17 +48,7 @@ function Map({ latitude, longitude, iconParams }) {
         setFirstMapLoad(false);
       }
       // Add previous locations of ISS
-      const newLocations = [...previousLocation];
-      newLocations.push(new L.LatLng(latitude, longitude));
-      setPreviousLocation(newLocations);
-
-      const polyline = new L.Polyline(newLocations, {
-        color: 'red',
-        weight: 3,
-        opacity: 0.5,
-        smoothFactor: 1
-      });
-      polyline.addTo(currentMap);
+      setPreviousLocation(previousLocation => [...previousLocation, new L.LatLng(latitude, longitude)]);
     }
   }, [latitude, longitude, currentMarker, currentMap, firstMapLoad]);
 
